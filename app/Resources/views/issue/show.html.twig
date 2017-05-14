@@ -1,0 +1,46 @@
+{% extends 'index.html.twig' %}
+
+{% block body %}
+    <div id="wrapper">
+        {% block content %}
+            <div class="container single-issue">
+                <div class="back">
+                    <a href="{{ path('homepage') }}">
+                        <span class="icon icon-back"></span> Back to issues
+                    </a>
+                </div>
+                <div class="block issue-content">
+                    <h1>{{ issue.title }} <span class="color-gray">#{{ issue.id }}</span></h1>
+                    <label class="label label-lg label-issue-state label-{{ issue.state }} text-upper">
+                        {{ issue.state }}
+                    </label>
+                    <a target="_blank" href="{{ issue.user.html_url }}">
+                        {{ issue.user.login }}
+                    </a> opened this issue {{ issue.created_at|ago }} -
+                    {{ issue.comments }} comment
+                </div>
+                <div class="issue-comments" id="comments">
+                    {% for comment in comments %}
+                        <div class="block issue-comment">
+                            <div class="block-head">
+                                <div class="extra"></div>
+                                <a target="_blank" href="{{ comment.user.html_url }}" class="avatar">
+                                    <img class="img img-circle"
+                                         title="{{ comment.user.login }}"
+                                         src="{{ comment.user.avatar_url }}"
+                                         alt="{{ comment.user.login }}" />
+                                </a>
+                                <a target="_blank" href="{{ comment.user.html_url }}">
+                                    {{ comment.user.login }}
+                                </a> commented {{ comment.created_at|ago }}
+                            </div>
+                            <div class="issue-comment-content">
+                                {{ comment.body|nl2br }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}

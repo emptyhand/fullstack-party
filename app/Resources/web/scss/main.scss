@@ -1,0 +1,72 @@
+@import "partials/common";
+@import "partials/header";
+@import "partials/paging";
+@import "partials/issues";
+
+#wrapper {
+  min-width: 240px;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  .container {
+    padding: 112px 12px 12px 12px;
+  }
+  .col-left {
+    float: left;
+    width: 50%;
+    height: 100%;
+  }
+  .col-right {
+    float: left;
+    width: 50%;
+    height: 100%;
+    color: #FFFFFF;
+    background-color: $color-blue-dark;
+    background-image: url('/img/photo-1.jpg');
+    background-repeat: no-repeat;
+    background-position: 50% 100px;
+    background-size: cover;
+    .container {
+      display: table;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      .inner {
+        text-align: center;
+        display: table-cell;
+        vertical-align: middle;
+        h1 {
+          color: #FFFFFF;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+
+  #wrapper {
+    .col-left {
+      float: none;
+      clear: both;
+      width: 100%;
+      height: auto;
+    }
+    .col-right {
+      float: none;
+      clear: both;
+      width: 100%;
+      height: auto;
+      background-position: 50% 50%;
+      .container {
+        display: block;
+        width: auto;
+        padding: 12px;
+        .inner {
+          display: block;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+.navbar {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: block;
+  background-color: $color-white;
+  padding:42px 50px;
+  .logo {
+    float: left;
+  }
+
+  .navbar-right {
+    padding: 0;
+    margin: 8px 0 0 0;
+    float: right;
+    list-style: none;
+    li {
+      display: inline-block;
+      a {
+        display: inline-block;
+        color: $color-blue;
+        text-decoration: none;
+        .icon {
+          margin-right: 6px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .navbar {
+    padding: 30px;
+    .logo {
+      img {
+        width: 80px;
+      }
+    }
+    .navbar-right {
+      margin-top: 3px;
+    }
+  }
+}

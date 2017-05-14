@@ -1,0 +1,43 @@
+@import "partials/common";
+@import "partials/buttons";
+
+body {
+  background: url("/img/login-bg.jpg") 50% 50% no-repeat $color-blue-dark;
+  background-size: cover;
+  text-align: center;
+}
+
+.login-container {
+  display: table;
+  width: 100%;
+  height: 100%;
+  .login-container-inner {
+    display: table-cell;
+    vertical-align: middle;
+    .logo {
+      display: block;
+      margin-bottom: 56px;
+    }
+    .btn-login {
+      min-width: 348px;
+    }
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .login-container {
+    .login-container-inner {
+      .logo {
+        img {
+          width: 160px;
+        }
+        margin-bottom: 30px;
+      }
+      .btn-login {
+        padding: 6px 8px;
+        font-weight: 400;
+        min-width: 140px;
+      }
+    }
+  }
+}

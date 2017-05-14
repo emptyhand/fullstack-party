@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Testio{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    </head>
+    <body>
+        {% block header %}
+            <nav class="navbar">
+                <a class="logo" href="{{ path('homepage') }}" title="Testio">
+                    <img src="{{ asset('img/logo.png') }}" alt="testio" />
+                </a>
+                <ul class="navbar-right">
+                    <li>
+                        <a href="{{ path('app_logout') }}">
+                            <span class="icon icon-exit"></span> Logout
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        {% endblock %}
+
+        {% block body %}
+        {% endblock %}
+
+        {% block javascripts %}
+        {% endblock %}
+    </body>
+</html>

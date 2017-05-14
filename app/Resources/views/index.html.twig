@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="wrapper">
+        {% block content %}
+            <div class="col-left">
+                {% block colLeft %}
+                {% endblock %}
+            </div>
+            <div class="col-right">
+                {% block colRight %}
+                {% endblock %}
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('assets/main.js') }}"></script>
+{% endblock %}

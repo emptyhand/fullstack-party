@@ -1,0 +1,128 @@
+.issues-list {
+  margin-top: 12px;
+  ul.nav {
+    padding: 12px 0;
+    li {
+      display: inline-block;
+      padding: 0 12px;
+      a {
+        font-size: 14px;
+        color: $color-gray;
+        .icon {
+          margin-right: 4px;
+        }
+        &:hover {
+          color: $color-primary;
+          text-decoration: none;
+          .icon-ok-default {
+            background-image: url('/img/icon-ok-primary.png');
+          }
+          .icon-info-default {
+            background-image: url('/img/icon-info-primary.png');
+          }
+        }
+      }
+      &.active {
+        a {
+          color: $color-black;
+        }
+      }
+    }
+  }
+  .issue {
+    margin-bottom: 18px;
+    h2 {
+      margin: 0 0 6px 0;
+      a {
+        margin: 0 6px 0 0;
+        color: $color-gray-dark;
+      }
+    }
+    .issue-content {
+      padding-left: 24px;
+      .icon-issue-state {
+        float: left;
+        margin-left: -32px;
+        margin-top: 2px;
+      }
+    }
+    .comments {
+      float: right;
+      color: $color-gray;
+      .icon {
+        margin-right: 6px;
+      }
+    }
+  }
+
+  .pagination {
+    margin: 28px 0;
+  }
+}
+
+.single-issue {
+  .back {
+    margin: 40px 0;
+  }
+  .issue-content {
+    margin-bottom: 48px;
+    h1 {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+    .label-issue-state {
+      .icon {
+        margin-right: 3px;
+      }
+      margin-right: 12px;
+    }
+  }
+  .issue-comments {
+
+    .block-head {
+      position: relative;
+      .extra {
+        width: 8px;
+        height: 18px;
+        left:-8px;
+        position: absolute;
+        background: url('/img/comment-extra-1.png') 50% 50% no-repeat;
+      }
+    }
+
+    .issue-comment {
+      margin-left: 84px;
+      margin-bottom: 24px;
+      .avatar {
+        float: left;
+        margin: -24px 0 0 -108px;
+        .img {
+          width: 64px;
+        }
+      }
+      .issue-comment-content {
+        line-height: 22px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .single-issue {
+    .issue-comments {
+      .extra {
+        display: none;
+      }
+      .issue-comment {
+        margin-left: 0;
+        .avatar {
+          float: left;
+          margin: -8px 12px 0 0;
+          .img {
+            width: 32px;
+          }
+        }
+      }
+    }
+  }
+}

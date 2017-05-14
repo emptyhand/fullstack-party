@@ -1,0 +1,65 @@
+{% extends 'index.html.twig' %}
+
+{% block colLeft %}
+<div class="container">
+    <div class="issues-list">
+        <div class="text-center">
+            <ul class="nav">
+                <li class="{{ state == 'open' ? 'active' }}">
+                    <a href="{{ path('filter', {'state': 'open'}) }}">
+                        <span class="icon icon-info-{{ state == 'open' ? 'active' : 'default' }}"></span>
+                        {{ stats.open }} Open
+                    </a>
+                </li>
+                <li class="{{ state == 'closed' ? 'active' }}">
+                    <a href="{{ path('filter', {'state': 'closed'}) }}">
+                        <span class="icon icon-ok-{{ state == 'closed' ? 'active' : 'default' }}""></span>
+                        {{ stats.closed }} Closed
+                    </a>
+                </li>
+            </ul>
+        </div>
+        {% for issue in issues %}
+            <div class="block issue">
+                <div class="issue-content">
+                    <label title="{{ issue.state }}" class="icon icon-issue-state icon-issue-state-{{ issue.state }}"></label>
+                    <a href="{{ path('show', {'owner': issue.user.login, 'repo': issue.repository.name, 'number': issue.number}) }}#comments"
+                       class="comments">
+                        <span class="icon icon-comment"></span>
+                        {{ issue.comments }}
+                    </a>
+                    <h2>
+                        <a href="{{ path('show', {'owner': issue.user.login, 'repo': issue.repository.name, 'number': issue.number}) }}">{{ issue.title }}</a>
+                        {% for label in issue.labels %}
+                            <span class="label" style="background-color: #{{ label.color }}">{{ label.name }}</span>
+                        {% endfor %}
+                    </h2>
+                    <div class="issue-details">
+                        #{{ issue.id }}
+                        opened {{ issue.created_at|ago }} by
+                        <a target="_blank" href="{{ issue.user.html_url }}">{{ issue.user.login }}</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+        <div class="text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block colRight %}
+<div class="container">
+    <div class="inner">
+        <h1>Full Task Developer Task</h1>
+        <p class="text-lead">
+            by <a href="{{ path('homepage') }}">
+                <img src="{{ asset('img/logo-sm.png') }}" alt="testio" />
+            </a>
+        </p>
+    </div>
+</div>
+{% endblock %}

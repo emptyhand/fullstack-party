@@ -1,0 +1,48 @@
+
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 16px;
+  height: 16px;
+  background: 50% 50% no-repeat;
+}
+
+.icon-comment {
+  background-image: url("/img/icon-comment.png");
+}
+
+.icon-exit {
+  background-image: url("/img/icon-exit.png");
+}
+
+.icon-back {
+  background-image: url("/img/icon-back.png");
+}
+
+.icon-info-white {
+  background-image: url("/img/icon-info-white.png");
+}
+
+.icon-info-default, .icon-issue-state-closed {
+  background-image: url("/img/icon-info-default.png");
+}
+
+.icon-info-active {
+  background-image: url("/img/icon-info-active.png");
+}
+
+.icon-info-primary, .icon-issue-state-open {
+  background-image: url("/img/icon-info-primary.png");
+}
+
+.icon-ok-default {
+  background-image: url("/img/icon-ok-default.png");
+}
+
+.icon-ok-primary {
+  background-image: url("/img/icon-ok-primary.png");
+}
+
+.icon-ok-active {
+  background-image: url("/img/icon-ok-active.png");
+}

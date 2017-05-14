@@ -1,0 +1,29 @@
+.label {
+  display: inline-block;
+  padding: 3px 4px;
+  border-radius: 2px;
+  font-size: 12px;
+  font-weight: 400;
+  color: $color-white;
+  background-color: $color-gray-dark;
+  white-space: nowrap;
+}
+
+.label-lg {
+  padding: 6px;
+}
+
+.label-primary, .label-open {
+  background-color: $color-primary;
+  box-shadow: 0px 1px 0px $shadow-primary;
+}
+
+.label-open {
+  background: url('/img/icon-info-white.png') 5px 50% no-repeat $color-primary;
+  padding-left: 28px;
+}
+
+.label-closed {
+  background: url('/img/icon-info-white.png') 6px 50% no-repeat $color-gray;
+  padding-left: 28px;
+}

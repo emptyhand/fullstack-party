@@ -1,0 +1,34 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/security.html
+security:
+
+    # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    providers:
+        hwi:
+            id: app.oauth_aware.user_provider.service
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        secured_area:
+            anonymous: ~
+            oauth:
+                resource_owners:
+                    github: '/login/check-github'
+                login_path: '/login'
+                use_forward: false
+                failure_path: '/login'
+
+                oauth_user_provider:
+                    service: app.oauth_aware.user_provider.service
+            logout:
+                path:   /logout
+                target: /
+
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/connect, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: ROLE_USER }

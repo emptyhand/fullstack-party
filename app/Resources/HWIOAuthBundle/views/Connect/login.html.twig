@@ -1,0 +1,27 @@
+{% extends 'index.html.twig' %}
+
+{% block header %}
+{% endblock %}
+
+{% block body %}
+    <div class="container login-container">
+        <div class="login-container-inner">
+            <a class="logo" href="{{ path('homepage') }}" title="testio">
+                <img alt="testio" src="{{ asset('img/logo-big.png') }}" />
+            </a>
+            {% if error is defined and error %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endif %}
+            {% for owner in hwi_oauth_resource_owners() %}
+                <a class="btn btn-primary btn-lg btn-login"
+                   href="{{ hwi_oauth_login_url(owner) }}">
+                    Login with {{ owner|trans({}, 'HWIOAuthBundle') }}
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('assets/login.js') }}"></script>
+{% endblock %}
