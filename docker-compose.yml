@@ -1,0 +1,17 @@
+version: '2'
+
+volumes:
+    logs:
+        driver: local
+
+services:
+    app-fullstack-party:
+        image: php:7.1.4-apache
+        working_dir: /var/www/html
+        environment:
+            docker: "true"
+        ports:
+            - 8080:80
+        volumes:
+            - .:/var/www/html
+            - logs:/var/www/html/var/logs

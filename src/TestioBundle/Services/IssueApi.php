@@ -1,15 +1,14 @@
 <?php
 
-namespace AppBundle\Services;
+namespace TestioBundle\Services;
 
 use Github\Api\Issue;
-use Http\Discovery\Exception\NotFoundException;
 
 /**
- * Class TestioIssueApi
- * @package AppBundle\Services
+ * Class IssueApi
+ * @package TestioBundle\Services
  */
-class TestioIssueApi extends Issue
+class IssueApi extends Issue
 {
     /**
      * Default items per page value
@@ -28,8 +27,8 @@ class TestioIssueApi extends Issue
     public function allUser($params)
     {
         if (isset($params['state']) &&
-            !in_array($params['state'], ['open', 'closed', 'all'])) {
-            throw new NotFoundException('Invalid state');
+            !in_array($params['state'], ['open', 'closed', 'all'], true)) {
+            return new \Exception('Wrong state params!');
         }
 
         return $this->get('/issues', array_merge(['page' => 1], $params));

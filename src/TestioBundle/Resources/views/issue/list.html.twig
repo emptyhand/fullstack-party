@@ -1,4 +1,4 @@
-{% extends 'index.html.twig' %}
+{% extends '@Testio/index.html.twig' %}
 
 {% block colLeft %}
 <div class="container">
@@ -6,13 +6,13 @@
         <div class="text-center">
             <ul class="nav">
                 <li class="{{ state == 'open' ? 'active' }}">
-                    <a href="{{ path('filter', {'state': 'open'}) }}">
+                    <a href="{{ path('testio_filter', {'state': 'open'}) }}">
                         <span class="icon icon-info-{{ state == 'open' ? 'active' : 'default' }}"></span>
                         {{ stats.open }} Open
                     </a>
                 </li>
                 <li class="{{ state == 'closed' ? 'active' }}">
-                    <a href="{{ path('filter', {'state': 'closed'}) }}">
+                    <a href="{{ path('testio_filter', {'state': 'closed'}) }}">
                         <span class="icon icon-ok-{{ state == 'closed' ? 'active' : 'default' }}""></span>
                         {{ stats.closed }} Closed
                     </a>
@@ -23,13 +23,13 @@
             <div class="block issue">
                 <div class="issue-content">
                     <label title="{{ issue.state }}" class="icon icon-issue-state icon-issue-state-{{ issue.state }}"></label>
-                    <a href="{{ path('show', {'owner': issue.user.login, 'repo': issue.repository.name, 'number': issue.number}) }}#comments"
+                    <a href="{{ path('testio_show', {'owner': issue.user.login, 'repo': issue.repository.name, 'number': issue.number}) }}#comments"
                        class="comments">
                         <span class="icon icon-comment"></span>
                         {{ issue.comments }}
                     </a>
                     <h2>
-                        <a href="{{ path('show', {'owner': issue.user.login, 'repo': issue.repository.name, 'number': issue.number}) }}">{{ issue.title }}</a>
+                        <a href="{{ path('testio_show', {'owner': issue.user.login, 'repo': issue.repository.name, 'number': issue.number}) }}">{{ issue.title }}</a>
                         {% for label in issue.labels %}
                             <span class="label" style="background-color: #{{ label.color }}">{{ label.name }}</span>
                         {% endfor %}
@@ -56,7 +56,7 @@
     <div class="inner">
         <h1>Full Task Developer Task</h1>
         <p class="text-lead">
-            by <a href="{{ path('homepage') }}">
+            by <a href="{{ path('testio_homepage') }}">
                 <img src="{{ asset('img/logo-sm.png') }}" alt="testio" />
             </a>
         </p>

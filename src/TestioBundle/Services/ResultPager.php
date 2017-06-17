@@ -1,16 +1,21 @@
 <?php
 
-namespace AppBundle\Services;
+namespace TestioBundle\Services;
 
 use Github\Api\ApiInterface;
-use Github\ResultPager;
+use Github\ResultPager as BaseResultPager;
 
 /**
- * Class TestioResultPager
- * @package AppBundle\Services
+ * Class ResultPager
+ * @package TestioBundle\Services
  */
-class TestioResultPager extends ResultPager
+class ResultPager
 {
+    /**
+     * @var BaseResultPager
+     */
+    private $basePager;
+
     /**
      * @var int
      */
@@ -27,6 +32,15 @@ class TestioResultPager extends ResultPager
     private $itemsPerPage;
 
     /**
+     * ResultPager constructor.
+     * @param BaseResultPager $pager
+     */
+    public function __construct(BaseResultPager $pager)
+    {
+        $this->basePager = $pager;
+    }
+
+    /**
      * @param ApiInterface $api
      * @param string $method
      * @param array $parameters
@@ -38,11 +52,12 @@ class TestioResultPager extends ResultPager
         $this->itemsPerPage = $api->getPerPage();
 
         // assign results, to count total items number later
-        $this->result = parent::fetch($api, $method, $parameters);
+        $this->result = $this->basePager->fetch($api, $method, $parameters);
 
+        $pagination = $this->basePager->getPagination();
         // get total page count from last link
-        if (isset($this->pagination['last'])) {
-            preg_match('/page=(\d+).*$/', $this->pagination['last'], $matches);
+        if (isset($pagination['last'])) {
+            preg_match('/page=(\d+).*$/', $pagination['last'], $matches);
             $this->totalPagesCount = (int)$matches[1];
         } elseif (isset($parameters[0]['page'])) {
             // if last link not exists then current page is last
@@ -68,13 +83,27 @@ class TestioResultPager extends ResultPager
      */
     public function getTotalItemsCount()
     {
+        $pagination = $this->basePager->getPagination();
         // if last page link exists, count last page items
-        if (isset($this->pagination['last'])) {
-            $lastPageItemsCount = count($this->fetchLast());
+        if (isset($pagination['last'])) {
+            $lastPageItemsCount = count($this->basePager->fetchLast());
         } else {
             // if last page items not exist, count current result items
             $lastPageItemsCount = count($this->result);
         }
         return ($this->totalPagesCount - 1)  * $this->itemsPerPage + $lastPageItemsCount;
+    }
+
+    /**
+     * @param $name
+     * @param $arguments
+     * @return mixed
+     */
+    public function __call($name, $arguments)
+    {
+        if (!method_exists($this, $name)) {
+            return call_user_func_array([$this->basePager, $name], $arguments);
+        }
+        return call_user_func_array([$this, $name], $arguments);
     }
 }

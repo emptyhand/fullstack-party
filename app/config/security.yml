@@ -5,7 +5,7 @@ security:
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
         hwi:
-            id: app.oauth_aware.user_provider.service
+            id: testio.oauth_aware.user_provider.service
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -23,7 +23,7 @@ security:
                 failure_path: '/login'
 
                 oauth_user_provider:
-                    service: app.oauth_aware.user_provider.service
+                    service: testio.oauth_aware.user_provider.service
             logout:
                 path:   /logout
                 target: /

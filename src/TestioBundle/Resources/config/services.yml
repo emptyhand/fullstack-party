@@ -1,0 +1,30 @@
+services:
+    testio.oauth_aware.user_provider.service:
+        class: HWI\Bundle\OAuthBundle\Security\Core\User\OAuthUserProvider
+
+    testio.github_client_factory:
+        class: TestioBundle\Services\GithubClientFactory
+        arguments: ['@security.token_storage', '@testio.base_client']
+
+    testio.base_result_pager:
+        class: Github\ResultPager
+        arguments: ['@testio.base_client']
+
+    testio.result_pager:
+        class: TestioBundle\Services\ResultPager
+        arguments: ['@testio.base_result_pager']
+
+    testio.base_client:
+        class: Github\Client
+
+    testio.github_client:
+        class: TestioBundle\Services\GithubClient
+        factory: 'testio.github_client_factory:create'
+
+    testio.issue_controller:
+        class: TestioBundle\Controller\IssueController
+        arguments:
+            - '@testio.github_client'
+            - '@testio.result_pager'
+            - '@knp_paginator'
+            - '@templating'

@@ -1,11 +1,11 @@
-{% extends 'index.html.twig' %}
+{% extends '@Testio/index.html.twig' %}
 
 {% block body %}
     <div id="wrapper">
         {% block content %}
             <div class="container single-issue">
                 <div class="back">
-                    <a href="{{ path('homepage') }}">
+                    <a href="{{ path('testio_homepage') }}">
                         <span class="icon icon-back"></span> Back to issues
                     </a>
                 </div>

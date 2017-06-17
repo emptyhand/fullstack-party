@@ -1,29 +1,29 @@
 <?php
 
-namespace AppBundle\Services;
+namespace TestioBundle\Services;
 
 /**
- * Class TestioIssueStats
- * @package AppBundle\Services
+ * Class IssueStats
+ * @package TestioBundle\Services
  */
-class TestioIssueStats
+class IssueStats
 {
     /**
-     * @var TestioResultPager
+     * @var ResultPager
      */
     private $pager;
 
     /**
-     * @var TestioIssueApi
+     * @var IssueApi
      */
     private $api;
 
     /**
      * TestioIssueStats constructor.
-     * @param TestioIssueApi $api
-     * @param TestioResultPager $pager
+     * @param IssueApi $api
+     * @param ResultPager $pager
      */
-    public function __construct(TestioIssueApi $api, TestioResultPager $pager)
+    public function __construct(IssueApi $api, ResultPager $pager)
     {
         $this->api = $api;
         $this->pager = $pager;

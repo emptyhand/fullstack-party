@@ -1,15 +1,16 @@
 <?php
 
-namespace AppBundle\Services;
+namespace TestioBundle\Services;
 
 use HWI\Bundle\OAuthBundle\Security\Core\Authentication\Token\OAuthToken;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+use Github\Client;
 
 /**
- * Class TestioGithubClientFactory
- * @package AppBundle\Services
+ * Class GithubClientFactory
+ * @package TestioBundle\Services
  */
-class TestioGithubClientFactory
+class GithubClientFactory
 {
     /**
      * @var TokenStorage
@@ -17,20 +18,27 @@ class TestioGithubClientFactory
     private $tokenStorage;
 
     /**
-     * TestioGithubClientFactory constructor.
-     * @param $tokenStorage
+     * @var Client
      */
-    public function __construct($tokenStorage)
+    private $baseClient;
+
+    /**
+     * GithubClientFactory constructor.
+     * @param $tokenStorage
+     * @param Client $baseClient
+     */
+    public function __construct($tokenStorage, Client $baseClient)
     {
         $this->tokenStorage = $tokenStorage;
+        $this->baseClient = $baseClient;
     }
 
     /**
-     * @return TestioGithubClient
+     * @return GithubClient
      */
     public function create()
     {
-        $client = new TestioGithubClient();
+        $client = new GithubClient($this->baseClient);
 
         /** @var OAuthToken $token */
         $token = $this->tokenStorage->getToken();
@@ -38,7 +46,7 @@ class TestioGithubClientFactory
         $client->authenticate(
             $token->getAccessToken(),
             null,
-            TestioGithubClient::AUTH_HTTP_TOKEN
+            Client::AUTH_HTTP_TOKEN
         );
         return $client;
     }

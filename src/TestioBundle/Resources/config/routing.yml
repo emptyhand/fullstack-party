@@ -1,0 +1,34 @@
+
+hwi_oauth_redirect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+    prefix:   /connect
+
+hwi_oauth_connect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/connect.xml"
+    prefix:   /connect
+
+hwi_oauth_login:
+    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+    prefix:   /login
+
+github_login:
+    path: /login/check-github
+
+testio:
+    resource: '@TestioBundle/Controller/'
+    type: annotation
+
+testio_logout:
+    path: /logout
+
+testio_homepage:
+    path: /
+    defaults: { _controller: testio.issue_controller:listAction }
+
+testio_filter:
+    path: /filter/{state}
+    defaults: { _controller: testio.issue_controller:listAction }
+
+testio_show:
+    path: /show/{owner}/{repo}/issues/{number}
+    defaults: { _controller: testio.issue_controller:showAction }

@@ -1,11 +1,2 @@
 services:
-    app.oauth_aware.user_provider.service:
-        class: HWI\Bundle\OAuthBundle\Security\Core\User\OAuthUserProvider
 
-    app.github_client_factory:
-        class: AppBundle\Services\TestioGithubClientFactory
-        arguments: ['@security.token_storage']
-
-    app.github_client:
-        class: AppBundle\Services\TestioGithubClient
-        factory: 'app.github_client_factory:create'
